@@ -6,10 +6,10 @@
     
     <!-- SEO Meta Tags -->
     <title>Humaniti Events | Professional DJ & Event Sound in Barcelona</title>
-    <meta name="description" content="Premium wedding and private event DJ with 15+  experience in Barcelona. Full sound & lighting setup. Open-format specialising in Hip-Hop, House, Disco/Funk, & Pop.">
+    <meta name="description" content="Premium wedding and private event DJ with 15+ years of experience in Barcelona. Full sound & lighting setup. Open-format specialising in Hip-Hop, House, Disco/Funk, & Pop.">
     <meta name="keywords" content="Barcelona DJ, Wedding DJ Barcelona, Event DJ Spain, Corporate DJ Barcelona, Sound and Lighting Hire Barcelona">
     
-    <!-- FAVICON SETTINGS (Make sure favicon.png is in your folder) -->
+    <!-- FAVICON SETTINGS -->
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     <link rel="shortcut icon" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
@@ -47,61 +47,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Modern, Textured & Interactive Buttons */
-.btn {
-    display: inline-block;
-    background: var(--text-main);
-    color: var(--bg-color);
-    padding: 14px 32px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    letter-spacing: 0.3px;
-    text-decoration: none;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    cursor: pointer;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    
-    /* Sleek tactile drop shadow */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-    
-    /* Smooth, modern easing curve */
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Hover Interaction: Lift, Warm Glow & Color Shift */
-.btn:hover {
-    background: var(--accent-orange);
-    color: #ffffff;
-    border-color: rgba(255, 87, 34, 0.5);
-    transform: translateY(-3px);
-    
-    /* Subtle neon underglow + inset top-light highlight */
-    box-shadow: 0 8px 24px rgba(255, 87, 34, 0.35), 
-                0 2px 6px rgba(0, 0, 0, 0.6),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-}
-
-/* Active / Click Interaction: Tactile Press-Down */
-.btn:active {
-    transform: translateY(-1px);
-    box-shadow: 0 3px 8px rgba(255, 87, 34, 0.2), 
-                inset 0 2px 4px rgba(0, 0, 0, 0.3);
-}
         :root {
             --bg-color: #0c0c0c;
-            --card-bg: #161616;
-            --accent-orange: #FF5722; /* Vibrant Orange */
+            --card-bg: rgba(22, 22, 22, 0.85); /* Semi-opaque card background */
+            --accent-orange: #FF5722;
             --text-main: #ffffff;
-            --text-muted: #a0a0a0;
-            --border: #262626;
+            --text-muted: #b0b0b0;
+            --border: rgba(255, 255, 255, 0.12);
         }
 
-        /* Base & Book-like Snap Layout */
+        /* Base & Scroll Snap Layout */
         html, body {
-            height: 100%;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
@@ -117,25 +73,74 @@
             scroll-behavior: smooth;
         }
 
-        /* Full Screen "Book Pages" */
+        /* Top Progress Bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.08);
+            z-index: 9999;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--accent-orange);
+            width: 0%;
+            transition: width 0.1s linear;
+            box-shadow: 0 0 14px rgba(255, 87, 34, 1);
+        }
+
+        /* ==========================================
+           BACKGROUND IMAGE OVERLAY SYSTEM
+        ========================================== */
         .page {
             min-height: 100vh;
-            height: 100vh;
+            min-height: 100dvh;
             scroll-snap-align: start;
             scroll-snap-stop: always;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 100px 20px 40px 20px;
+            padding: 140px 20px 40px 20px;
             box-sizing: border-box;
             position: relative;
+            overflow: hidden;
+        }
+
+        /* Fullscreen background image with dark overlay */
+        .page-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 1;
+            filter: grayscale(20%) brightness(0.7); /* Subtle stylistic touch */
+        }
+
+        /* Dark semi-opaque gradient layer for maximum legibility */
+        .page-bg::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(12,12,12,0.85) 0%, rgba(12,12,12,0.92) 50%, rgba(12,12,12,0.88) 100%);
         }
 
         .container {
             width: 100%;
             max-width: 1100px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2; /* Sits above background image */
         }
 
         /* Fixed Header */
@@ -145,32 +150,12 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(12, 12, 12, 0.92);
+            background: rgba(12, 12, 12, 0.88);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
-            padding: 20px 0 15px 0;
+            padding: 15px 0 12px 0;
         }
 
-        /* Scroll Progress Bar (Orange) */
-        .progress-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.05);
-            z-index: 1001;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: var(--accent-orange);
-            width: 0%;
-            transition: width 0.1s ease-out;
-            box-shadow: 0 0 12px rgba(255, 87, 34, 0.8);
-        }
-
-        /* Centered Header Logo */
         .header-container {
             display: flex;
             flex-direction: column;
@@ -181,9 +166,9 @@
         }
 
         .logo-graphic {
-            width: 58px;
-            height: 58px;
-            margin-bottom: 8px;
+            width: 50px;
+            height: 50px;
+            margin-bottom: 6px;
             transition: transform 0.4s ease;
         }
 
@@ -192,7 +177,7 @@
         }
 
         .logo-text {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 800;
             letter-spacing: -0.5px;
             color: var(--text-main);
@@ -200,13 +185,13 @@
         }
 
         .logo-sub {
-            font-size: 0.8rem;
-            letter-spacing: 7px;
+            font-size: 0.75rem;
+            letter-spacing: 6px;
             text-transform: uppercase;
             color: var(--text-muted);
-            margin-top: 4px;
+            margin-top: 3px;
             display: block;
-            margin-left: 7px;
+            margin-left: 6px;
         }
 
         .header-cta {
@@ -216,10 +201,10 @@
             transform: translateY(-50%);
         }
 
-        /* Floating Side Book Navigation */
+        /* Floating Side Navigation */
         .page-nav {
             position: fixed;
-            right: 25px;
+            right: 20px;
             top: 50%;
             transform: translateY(-50%);
             display: flex;
@@ -232,7 +217,7 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: var(--border);
+            background: rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
             text-decoration: none;
         }
@@ -254,6 +239,7 @@
             font-weight: 600;
             display: inline-block;
             margin-bottom: 20px;
+            backdrop-filter: blur(6px);
         }
 
         h1 {
@@ -262,6 +248,7 @@
             margin-bottom: 20px;
             line-height: 1.2;
             text-align: center;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
         p.subtitle {
@@ -272,26 +259,39 @@
             text-align: center;
         }
 
+        /* Sleek Modern Buttons */
         .btn {
             display: inline-block;
             background: var(--text-main);
             color: var(--bg-color);
             padding: 14px 32px;
             font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
             text-decoration: none;
-            border-radius: 6px;
-            transition: 0.3s;
-            border: none;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             cursor: pointer;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .btn:hover {
             background: var(--accent-orange);
-            color: #fff;
-            transform: translateY(-2px);
+            color: #ffffff;
+            border-color: rgba(255, 87, 34, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(255, 87, 34, 0.35), 0 2px 6px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
         }
 
-        /* Grid Cards - Explicit 3-column row layout on Desktop */
+        .btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(255, 87, 34, 0.2), inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Grid Cards Layout */
         .grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -302,6 +302,7 @@
 
         .card {
             background: var(--card-bg);
+            backdrop-filter: blur(10px);
             border: 1px solid var(--border);
             padding: 30px 20px;
             border-radius: 12px;
@@ -316,20 +317,64 @@
             margin-bottom: 15px;
         }
 
-        .card h3 { font-size: 1.25rem; margin-bottom: 10px; }
+        .card h3 { font-size: 1.25rem; margin-bottom: 10px; margin-top: 0; }
         .card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px; }
 
         .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
-        .tag { background: #222; border: 1px solid #333; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; }
+        .tag { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.1); padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; white-space: nowrap; }
+
+        /* Media Embed Layout */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 100%;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .mixcloud-container {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+        }
+
+        .mixcloud-container iframe {
+            width: 100%;
+            border: 0;
+            display: block;
+        }
 
         /* Form Styles */
         .contact-section {
             background: var(--card-bg);
+            backdrop-filter: blur(12px);
             border: 1px solid var(--border);
             padding: 35px;
             border-radius: 16px;
             width: 100%;
             max-width: 650px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 2;
         }
 
         .form-group { margin-bottom: 15px; text-align: left; }
@@ -337,45 +382,50 @@
         input, select, textarea {
             width: 100%;
             padding: 12px;
-            background: #0c0c0c;
+            background: rgba(12, 12, 12, 0.8);
             border: 1px solid var(--border);
             color: #fff;
             border-radius: 6px;
             box-sizing: border-box;
+            font-size: 16px;
         }
         input:focus, textarea:focus, select:focus { border-color: var(--accent-orange); outline: none; }
 
-        /* Responsive Tweaks */
+        /* Mobile & Tablet Styles */
         @media (max-width: 900px) {
-            .grid {
-                grid-template-columns: 1fr; /* Switch to single column on mobile/tablets */
-            }
-            .page { 
-                height: auto; 
-                min-height: 100vh;
-                padding-top: 140px; 
-                padding-bottom: 60px;
-            }
+            body { scroll-snap-type: none; }
+            .page { height: auto; min-height: auto; padding-top: 110px; padding-bottom: 50px; }
             h1 { font-size: 2rem; }
-            .logo-text { font-size: 1.6rem; }
-            .logo-sub { font-size: 0.65rem; letter-spacing: 5px; }
-            .logo-graphic { width: 44px; height: 44px; }
+            p.subtitle { font-size: 1rem; }
+            .logo-text { font-size: 1.5rem; }
+            .logo-sub { font-size: 0.6rem; letter-spacing: 4px; }
+            .logo-graphic { width: 38px; height: 38px; }
             .header-cta { display: none; }
-            .page-nav { right: 10px; }
+
+            .grid, .media-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .card { padding: 22px 18px; }
+            .tags { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 5px; -webkit-overflow-scrolling: touch; }
+            .page-nav { right: 10px; gap: 10px; }
+            .dot { width: 8px; height: 8px; }
+            .contact-section { padding: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- HEADER & ORANGE PROGRESS BAR -->
-    <header>
-        <div class="progress-container">
-            <div class="progress-bar" id="progressBar"></div>
-        </div>
+    <!-- TOP PROGRESS BAR -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
 
+    <!-- FIXED HEADER -->
+    <header>
         <div class="container header-container">
             <a href="#page-1" style="text-decoration: none;" aria-label="Humaniti Events Home">
-                <!-- SVG Turntable Logo -->
                 <svg class="logo-graphic" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="50" cy="50" r="45" stroke="white" stroke-width="7"/>
                     <path d="M 50 12 A 38 38 0 0 1 88 50" stroke="white" stroke-width="5" stroke-linecap="round" fill="none"/>
@@ -390,35 +440,41 @@
                 </div>
             </a>
 
-            <a href="#page-3" class="btn header-cta" style="padding: 8px 18px; font-size: 0.85rem;">Book Event</a>
+            <a href="#page-4" class="btn header-cta" style="padding: 8px 18px; font-size: 0.85rem;">Book Event</a>
         </div>
     </header>
 
-    <!-- FLOATING BOOK DOT NAVIGATION -->
+    <!-- FLOATING SIDE NAVIGATION DOTS -->
     <div class="page-nav">
         <a href="#page-1" class="dot active" aria-label="Page 1: Home"></a>
         <a href="#page-2" class="dot" aria-label="Page 2: Services"></a>
-        <a href="#page-3" class="dot" aria-label="Page 3: Booking"></a>
+        <a href="#page-3" class="dot" aria-label="Page 3: Mixes & Media"></a>
+        <a href="#page-4" class="dot" aria-label="Page 4: Booking"></a>
     </div>
 
     <main>
         <!-- PAGE 1: HERO -->
         <section id="page-1" class="page">
+            <!-- ADD YOUR PAGE 1 BACKGROUND IMAGE BELOW -->
+            <div class="page-bg" style="background-image: url('images/hero-bg.jpg');"></div>
+            
             <div class="container" style="text-align: center;">
                 <span class="badge">15+ Years of Experience</span>
-                <h1>Highly-personalised Music Curation and Event Preparation.</h1>
-                <p class="subtitle">Open-format DJ for Weddings, Private Celebrations, and Corporate Events. Pro-audio & lighting included.</p>
-                <a href="#page-3" class="btn">Check Event Availability</a>
+                <h1>High-Energy Sound & Music Production</h1>
+                <p class="subtitle">Barcelona’s premiere open-format DJ for Weddings, Private Celebrations, and Corporate Events. Pro-audio & lighting included.</p>
+                <a href="#page-4" class="btn">Check Event Availability</a>
             </div>
         </section>
 
         <!-- PAGE 2: SERVICES & GENRES -->
         <section id="page-2" class="page">
+            <!-- ADD YOUR PAGE 2 BACKGROUND IMAGE BELOW -->
+            <div class="page-bg" style="background-image: url('images/services-bg.jpg');"></div>
+
             <div class="container" style="text-align: center;">
-                <h2 style="font-size: 2.2rem; margin-bottom: 30px;">Services & Sound</h2>
+                <h2 style="font-size: 2rem; margin-bottom: 25px;">Services & Sound</h2>
                 
                 <div class="grid">
-                    <!-- CARD 1 -->
                     <div class="card">
                         <i class="fa-solid fa-sliders"></i>
                         <h3>Open-Format</h3>
@@ -436,7 +492,6 @@
                         </div>
                     </div>
 
-                    <!-- CARD 2 -->
                     <div class="card">
                         <i class="fa-solid fa-compact-disc"></i>
                         <h3>Weddings & Parties</h3>
@@ -448,14 +503,13 @@
                         </div>
                     </div>
 
-                    <!-- CARD 3 -->
                     <div class="card">
                         <i class="fa-solid fa-volume-high"></i>
                         <h3>Sound & Lighting</h3>
                         <p>Complete high-grade PA systems, wireless mics, and lighting provided across Catalonia.</p>
                         <div class="tags">
                             <span class="tag">PA System</span>
-                            <span class="tag">Microphones for Speeches</span>
+                            <span class="tag">Speech Mics</span>
                             <span class="tag">Event Lighting</span>
                         </div>
                     </div>
@@ -463,13 +517,49 @@
             </div>
         </section>
 
-        <!-- PAGE 3: BOOKING FORM -->
+        <!-- PAGE 3: MIXES & VIDEOS -->
         <section id="page-3" class="page">
+            <!-- ADD YOUR PAGE 3 BACKGROUND IMAGE BELOW -->
+            <div class="page-bg" style="background-image: url('images/mixes-bg.jpg');"></div>
+
+            <div class="container" style="text-align: center;">
+                <h2 style="font-size: 2rem; margin-bottom: 10px;">Mixes & Performance Clips</h2>
+                <p class="subtitle" style="margin-bottom: 25px;">Listen to recorded sets and watch live event highlights.</p>
+                
+                <div class="media-grid">
+                    <!-- MIXCLOUD EMBED 1 -->
+                    <div class="mixcloud-container">
+                        <iframe height="120" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fspinnermusic%2Fhip-hop-classics-mix%2F" allow="autoplay"></iframe>
+                    </div>
+
+                    <!-- MIXCLOUD EMBED 2 -->
+                    <div class="mixcloud-container">
+                        <iframe height="120" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fspinnermusic%2Fhouse-essentials-mix%2F" allow="autoplay"></iframe>
+                    </div>
+
+                    <!-- YOUTUBE VIDEO EMBED 1 -->
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Humaniti Events Performance" allowfullscreen></iframe>
+                    </div>
+
+                    <!-- YOUTUBE VIDEO EMBED 2 -->
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Humaniti Events Live Set" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 4: BOOKING FORM -->
+        <section id="page-4" class="page">
+            <!-- ADD YOUR PAGE 4 BACKGROUND IMAGE BELOW -->
+            <div class="page-bg" style="background-image: url('images/booking-bg.jpg');"></div>
+
             <div class="contact-section">
                 <h2 style="font-size: 1.8rem; margin-bottom: 5px; text-align: center;">Let's Build Your Sound Track</h2>
                 <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 25px;">Direct bookings for Barcelona & surrounding regions.</p>
                 
-                <form action="https://formspree.io/f/your-form-id" method="POST">
+                <form action="https://formspree.io/f/xnjeeyql" method="POST">
                     <div class="form-group">
                         <label>Your Name / Organization</label>
                         <input type="text" name="name" required placeholder="Name or Company">
@@ -486,25 +576,23 @@
                         <label>Music Preferences & Sound Needs</label>
                         <textarea name="message" rows="3" placeholder="Tell us about your event details..."></textarea>
                     </div>
-                    <button type="submit" class="btn" style="width: 100%;">Send Booking Request</button>
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Send Booking Request</button>
                 </form>
             </div>
         </section>
     </main>
 
-    <!-- SCRIPTS FOR SCROLL TRACKING & PAGE DOT OBSERVER -->
+    <!-- JS FOR PROGRESS BAR AND OBSERVER -->
     <script>
-        // 1. Update Orange Top Progress Bar
-        window.onscroll = function() { updateProgressBar() };
+        window.addEventListener('scroll', updateProgressBar);
 
         function updateProgressBar() {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const winScroll = window.scrollY || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
             document.getElementById("progressBar").style.width = scrolled + "%";
         }
 
-        // 2. Active Dot Navigation Observer
         const pages = document.querySelectorAll('.page');
         const dots = document.querySelectorAll('.dot');
 
@@ -517,7 +605,7 @@
                     });
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.4 });
 
         pages.forEach(page => observer.observe(page));
     </script>
