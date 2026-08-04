@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Panel Sections</title>
+  <title>Image Panel Sections with Image Failover</title>
   <style>
     * {
       box-sizing: border-box;
@@ -17,7 +17,7 @@
       background-color: #0b0f19;
     }
 
-    /* Base Panel Styling */
+    /* Base Section / Page Container */
     .image-panel {
       position: relative;
       min-height: 100vh; /* Full viewport height */
@@ -28,25 +28,19 @@
       padding: 2rem;
       overflow: hidden;
       
-      /* SECTION DIVIDER BORDERS */
+      /* BORDER LINES BETWEEN PAGES */
       border-bottom: 4px solid #ffffff;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+      
+      /* Base Fallback Color (If EVERYTHING fails) */
+      background-color: #1a202c;
     }
 
     .image-panel:last-of-type {
       border-bottom: none;
     }
 
-    /* Fallback Dark Gradients (Appears if image fails to load) */
-    .section-1 {
-      background: linear-gradient(135deg, #1e293b, #0f172a);
-    }
-
-    .section-2 {
-      background: linear-gradient(135deg, #0f172a, #1e1b4b);
-    }
-
-    /* Semi-transparent Background Image Layer */
+    /* Background Layer (Handles Image + CSS Gradient Fallback) */
     .image-panel::before {
       content: "";
       position: absolute;
@@ -58,33 +52,50 @@
       background-position: center;
       background-repeat: no-repeat;
       
-      /* OPACITY & READABILITY SETTINGS */
-      opacity: 0.45; /* Image transparency */
+      /* IMAGE OPACITY */
+      opacity: 0.45; 
       z-index: 1;
+      transition: all 0.5s ease;
     }
 
-    /* Section 1 Image */
+    /* SECTION 1: Image URL + Fallback Gradient */
     .section-1::before {
-      /* If hosting HTML inside the repo, use relative path: background-image: url('Img%204.png'); */
-      background-image: url('https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%204.png');
+      background-image: 
+        url('https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%204.png'),
+        radial-gradient(circle at 30% 30%, #3b82f6, #1e1b4b, #0f172a);
     }
 
-    /* Section 2 Image (Replace with your 2nd image URL when ready) */
+    /* SECTION 2: Image URL + Fallback Gradient */
     .section-2::before {
-      background-image: url('https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%204.png');
+      background-image: 
+        url('https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%204.png'),
+        radial-gradient(circle at 70% 70%, #8b5cf6, #311042, #0f172a);
     }
 
-    /* Text Container Floating Above Background */
+    /* FALLBACK STATE: Applied via JS if the image fails to load */
+    .image-panel.img-failed::before {
+      opacity: 1; /* Make fallback gradient full brightness */
+    }
+
+    .section-1.img-failed::before {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #1e1b4b 100%);
+    }
+
+    .section-2.img-failed::before {
+      background: linear-gradient(135deg, #2e1065 0%, #0f172a 50%, #1e293b 100%);
+    }
+
+    /* Text Container on top of background */
     .panel-content {
       position: relative;
-      z-index: 2; /* Ensures text stays on top */
+      z-index: 2; /* Sits above background layer */
       max-width: 800px;
       padding: 3rem 2.5rem;
       background: rgba(15, 23, 42, 0.75); /* Dark frosted glass card */
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 16px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(12px); /* Blur background behind card */
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
 
@@ -93,7 +104,6 @@
       font-weight: 700;
       margin-bottom: 1.25rem;
       color: #ffffff;
-      letter-spacing: -0.02em;
     }
 
     .panel-content p {
@@ -101,25 +111,60 @@
       line-height: 1.7;
       color: #cbd5e1;
     }
+
+    /* Error badge shown only if image fails */
+    .status-badge {
+      display: none;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.8rem;
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #fca5a5;
+      border-radius: 20px;
+    }
+
+    .img-failed .status-badge {
+      display: inline-block;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Page / Section 1 -->
-  <section class="image-panel section-1">
+  <!-- First Page / Section -->
+  <section class="image-panel section-1" id="section1">
     <div class="panel-content">
-      <h1>Section One</h1>
-      <p>This panel uses a semi-transparent image background separated by a solid white border line at the bottom.</p>
+      <h1>Section One Title</h1>
+      <p>This section is designed to display semi-transparent image panels. If the GitHub image fails to load, a dark gradient background displays automatically.</p>
+      <div class="status-badge">⚠️ Background Image Failed - Showing Fallback Gradient</div>
     </div>
   </section>
 
-  <!-- Page / Section 2 -->
-  <section class="image-panel section-2">
+  <!-- Second Page / Section -->
+  <section class="image-panel section-2" id="section2">
     <div class="panel-content">
-      <h1>Section Two</h1>
-      <p>This is your second page section. Update the CSS for <code>.section-2::before</code> to point to your second image once uploaded.</p>
+      <h1>Section Two Title</h1>
+      <p>Separated from the top page by a white border divider.</p>
+      <div class="status-badge">⚠️ Background Image Failed - Showing Fallback Gradient</div>
     </div>
   </section>
+
+  <script>
+    // URL of the GitHub image
+    const imgUrl = 'https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%204.png';
+    
+    // Create an invisible image to test if GitHub link works
+    const testImg = new Image();
+    testImg.src = imgUrl;
+
+    // If image fails to load (e.g., Private Repo, 404, or Offline)
+    testImg.onerror = function() {
+      console.warn('Image failed to load. Switching to CSS fallback gradients.');
+      document.querySelectorAll('.image-panel').forEach(panel => {
+        panel.classList.add('img-failed');
+      });
+    };
+  </script>
 
 </body>
 </html>
