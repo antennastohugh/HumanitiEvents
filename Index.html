@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Panel Sections with Image Failover</title>
+  <title>Image Panel Sections with Thin Scroll Progress Bar</title>
   <style>
     * {
       box-sizing: border-box;
@@ -17,10 +17,29 @@
       background-color: #0b0f19;
     }
 
-    /* Base Section / Page Container */
+    /* --- TOP SCROLL PROGRESS BAR --- */
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px; /* CHANGE THICKNESS HERE (e.g., 2px, 3px, 4px) */
+      background: rgba(255, 255, 255, 0.1);
+      z-index: 9999;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899); /* Sleek gradient accent */
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.7); /* Subtle glow */
+      transition: width 0.1s linear;
+    }
+
+    /* Base Section Container */
     .image-panel {
       position: relative;
-      min-height: 100vh; /* Full viewport height */
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -28,11 +47,9 @@
       padding: 2rem;
       overflow: hidden;
       
-      /* BORDER LINES BETWEEN PAGES */
-      border-bottom: 4px solid #ffffff;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
-      
-      /* Base Fallback Color (If EVERYTHING fails) */
+      /* Subtle Divider Between Sections */
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
       background-color: #1a202c;
     }
 
@@ -40,7 +57,7 @@
       border-bottom: none;
     }
 
-    /* Background Layer (Handles Image + CSS Gradient Fallback) */
+    /* Background Layer (Image + Fallback) */
     .image-panel::before {
       content: "";
       position: absolute;
@@ -51,30 +68,26 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      
-      /* IMAGE OPACITY */
       opacity: 0.45; 
       z-index: 1;
       transition: all 0.5s ease;
     }
 
-    /* SECTION 1: Image URL + Fallback Gradient */
     .section-1::before {
       background-image: 
         url('https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%204.png'),
         radial-gradient(circle at 30% 30%, #3b82f6, #1e1b4b, #0f172a);
     }
 
-    /* SECTION 2: Image URL + Fallback Gradient */
     .section-2::before {
       background-image: 
         url('https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%204.png'),
         radial-gradient(circle at 70% 70%, #8b5cf6, #311042, #0f172a);
     }
 
-    /* FALLBACK STATE: Applied via JS if the image fails to load */
+    /* JS Image Failure States */
     .image-panel.img-failed::before {
-      opacity: 1; /* Make fallback gradient full brightness */
+      opacity: 1;
     }
 
     .section-1.img-failed::before {
@@ -85,13 +98,13 @@
       background: linear-gradient(135deg, #2e1065 0%, #0f172a 50%, #1e293b 100%);
     }
 
-    /* Text Container on top of background */
+    /* Text Card Container */
     .panel-content {
       position: relative;
-      z-index: 2; /* Sits above background layer */
+      z-index: 2;
       max-width: 800px;
       padding: 3rem 2.5rem;
-      background: rgba(15, 23, 42, 0.75); /* Dark frosted glass card */
+      background: rgba(15, 23, 42, 0.75);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 16px;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
@@ -112,7 +125,6 @@
       color: #cbd5e1;
     }
 
-    /* Error badge shown only if image fails */
     .status-badge {
       display: none;
       margin-top: 1rem;
@@ -131,33 +143,45 @@
 </head>
 <body>
 
-  <!-- First Page / Section -->
+  <!-- TOP SCROLL PROGRESS BAR -->
+  <div class="progress-container">
+    <div class="progress-bar" id="myBar"></div>
+  </div>
+
+  <!-- Section 1 -->
   <section class="image-panel section-1" id="section1">
     <div class="panel-content">
       <h1>Section One Title</h1>
-      <p>This section is designed to display semi-transparent image panels. If the GitHub image fails to load, a dark gradient background displays automatically.</p>
+      <p>Scroll down to watch the thin progress bar fill up at the top of the screen!</p>
       <div class="status-badge">⚠️ Background Image Failed - Showing Fallback Gradient</div>
     </div>
   </section>
 
-  <!-- Second Page / Section -->
+  <!-- Section 2 -->
   <section class="image-panel section-2" id="section2">
     <div class="panel-content">
       <h1>Section Two Title</h1>
-      <p>Separated from the top page by a white border divider.</p>
+      <p>This is page two. The top bar tracks your total scroll completion smoothly.</p>
       <div class="status-badge">⚠️ Background Image Failed - Showing Fallback Gradient</div>
     </div>
   </section>
 
   <script>
-    // URL of the GitHub image
+    // --- 1. SCROLL PROGRESS BAR SCRIPT ---
+    window.onscroll = function() { updateProgressBar() };
+
+    function updateProgressBar() {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById("myBar").style.width = scrolled + "%";
+    }
+
+    // --- 2. IMAGE FAILOVER CHECKER ---
     const imgUrl = 'https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%204.png';
-    
-    // Create an invisible image to test if GitHub link works
     const testImg = new Image();
     testImg.src = imgUrl;
 
-    // If image fails to load (e.g., Private Repo, 404, or Offline)
     testImg.onerror = function() {
       console.warn('Image failed to load. Switching to CSS fallback gradients.');
       document.querySelectorAll('.image-panel').forEach(panel => {
