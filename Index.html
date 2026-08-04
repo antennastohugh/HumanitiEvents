@@ -49,7 +49,7 @@
     <style>
         :root {
             --bg-color: #0c0c0c;
-            --card-bg: rgba(22, 22, 22, 0.90); /* Slightly denser for contrast */
+            --card-bg: rgba(22, 22, 22, 0.90);
             --accent-orange: #FF5722;
             --accent-orange-glow: rgba(255, 87, 34, 0.15);
             --text-main: #ffffff;
@@ -93,9 +93,7 @@
             box-shadow: 0 0 14px rgba(255, 87, 34, 1);
         }
 
-        /* ==========================================
-           BACKGROUND & SIDE PERFORMANCE GALLERIES
-        ========================================== */
+        /* Background & Side Performance Galleries */
         .page {
             min-height: 100vh;
             min-height: 100dvh;
@@ -111,7 +109,6 @@
             overflow: hidden;
         }
 
-        /* Fullscreen background image with dark overlay */
         .page-bg {
             position: absolute;
             top: 0;
@@ -125,7 +122,6 @@
             filter: grayscale(20%) brightness(0.5);
         }
 
-        /* Dark semi-opaque gradient layer for maximum legibility */
         .page-bg::after {
             content: "";
             position: absolute;
@@ -136,7 +132,6 @@
             background: linear-gradient(180deg, rgba(12,12,12,0.92) 0%, rgba(12,12,12,0.95) 50%, rgba(12,12,12,0.92) 100%);
         }
 
-        /* Side Panels for Past Performance Photos */
         .side-panel {
             position: absolute;
             top: 50%;
@@ -147,7 +142,7 @@
             gap: 15px;
             z-index: 2;
             pointer-events: none;
-            opacity: 0.65; /* Semi-transparent so it stays behind main focus */
+            opacity: 0.65;
             transition: opacity 0.3s ease;
         }
 
@@ -169,7 +164,7 @@
             max-width: 1000px;
             margin: 0 auto;
             position: relative;
-            z-index: 10; /* Ensures main text sits above side photos */
+            z-index: 10;
         }
 
         /* Fixed Header */
@@ -185,7 +180,6 @@
             padding: 15px 0 12px 0;
         }
 
-        /* 3-Part Balanced Header Layout */
         .header-container {
             display: flex;
             align-items: center;
@@ -264,7 +258,7 @@
             box-shadow: 0 0 8px var(--accent-orange);
         }
 
-        /* Buttons & Content Design */
+        /* Content Styling */
         .badge {
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -297,7 +291,6 @@
             text-shadow: 0 2px 8px rgba(0,0,0,0.8);
         }
 
-        /* Sleek Modern Buttons */
         .btn {
             display: inline-block;
             background: var(--text-main);
@@ -329,7 +322,6 @@
             box-shadow: 0 3px 8px rgba(255, 87, 34, 0.2), inset 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        /* Grid Cards Layout */
         .grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -367,31 +359,11 @@
         .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
         .tag { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.1); padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; white-space: nowrap; }
 
-        /* Media Embed Layout */
         .media-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
             width: 100%;
-        }
-
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            background: var(--card-bg);
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
         }
 
         .mixcloud-container {
@@ -407,7 +379,6 @@
             display: block;
         }
 
-        /* Form Styles */
         .contact-section {
             background: var(--card-bg);
             backdrop-filter: blur(14px);
@@ -436,7 +407,6 @@
         }
         input:focus, textarea:focus, select:focus { border-color: var(--accent-orange); outline: none; }
 
-        /* Hide Side Galleries on Smaller Screens for Clean Mobile Layout */
         @media (max-width: 1350px) {
             .side-panel { display: none; }
         }
@@ -477,10 +447,8 @@
     <!-- FIXED HEADER -->
     <header>
         <div class="header-container">
-            <!-- Left-side empty balancer -->
             <div class="header-spacer"></div>
 
-            <!-- Centered Logo -->
             <a href="#page-1" style="text-decoration: none; text-align: center;" aria-label="Humaniti Events Home">
                 <svg class="logo-graphic" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="50" cy="50" r="45" stroke="white" stroke-width="7"/>
@@ -496,7 +464,6 @@
                 </div>
             </a>
 
-            <!-- Right-side CTA Button -->
             <a href="#page-4" class="btn header-cta" style="padding: 8px 18px; font-size: 0.85rem;">Book Event</a>
         </div>
     </header>
@@ -514,16 +481,16 @@
         <section id="page-1" class="page">
             <div class="page-bg" style="background-image: url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1920&q=80');"></div>
             
-            <!-- LEFT SEMI-TRANSPARENT PERFORMANCE GALLERY -->
+            <!-- LEFT PANEL -->
             <div class="side-panel side-panel-left">
-                <img src="Img 2.png&fit=crop&w=400&q=80" class="side-photo" alt="Past Event DJ Setup">
-                <img src="Img 1.png&fit=crop&w=400&q=80" class="side-photo" alt="Crowd Dancing">
+                <img src="Img 2.png" class="side-photo" alt="Past Event DJ Setup">
+                <img src="Img 1.png" class="side-photo" alt="Crowd Dancing">
             </div>
 
-            <!-- RIGHT SEMI-TRANSPARENT PERFORMANCE GALLERY -->
+            <!-- RIGHT PANEL -->
             <div class="side-panel side-panel-right">
-                <img src="Img 3.jpg&fit=crop&w=400&q=80" class="side-photo" alt="Stage Lighting Setup">
-                <img src="Img 4.png&fit=crop&w=400&q=80" class="side-photo" alt="Live Mixing Desk">
+                <img src="Img 3.jpg" class="side-photo" alt="Stage Lighting Setup">
+                <img src="Img 4.png" class="side-photo" alt="Live Mixing Desk">
             </div>
 
             <div class="container" style="text-align: center;">
@@ -538,16 +505,16 @@
         <section id="page-2" class="page">
             <div class="page-bg" style="background-image: url('https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?auto=format&fit=crop&w=1920&q=80');"></div>
 
-            <!-- LEFT SEMI-TRANSPARENT PERFORMANCE GALLERY -->
+            <!-- LEFT PANEL -->
             <div class="side-panel side-panel-left">
-                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80" class="side-photo" alt="Live Audio Equipment">
-                <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=400&q=80" class="side-photo" alt="Party Lights">
+                <img src="Img 1.png" class="side-photo" alt="Live Audio Equipment">
+                <img src="Img 2.png" class="side-photo" alt="Party Lights">
             </div>
 
-            <!-- RIGHT SEMI-TRANSPARENT PERFORMANCE GALLERY -->
+            <!-- RIGHT PANEL -->
             <div class="side-panel side-panel-right">
-                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=400&q=80" class="side-photo" alt="Private Celebration Event">
-                <img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=400&q=80" class="side-photo" alt="Venue Stage Setup">
+                <img src="Img 3.jpg" class="side-photo" alt="Private Celebration Event">
+                <img src="Img 4.png" class="side-photo" alt="Venue Stage Setup">
             </div>
 
             <div class="container" style="text-align: center;">
@@ -598,24 +565,29 @@
 
         <!-- PAGE 3: MIXES & VIDEOS -->
         <section id="page-3" class="page">
-            <div class="page-bg" style="background-image: url('https://github.com/antennastohugh/HumanitiEvents/blob/main/Img%201.png?auto=format&fit=crop&w=1920&q=80');"></div>
+            <div class="page-bg" style="background-image: url('Img 1.png');"></div>
 
-            <!-- LEFT SEMI-TRANSPARENT PERFORMANCE GALLERY -->
+            <!-- LEFT PANEL -->
             <div class="side-panel side-panel-left">
-                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=400&q=80" class="side-photo" alt="Live Performance Highlight">
+                <img src="Img 3.jpg" class="side-photo" alt="Live Performance Highlight">
             </div>
 
-            <!-- RIGHT SEMI-TRANSPARENT PERFORMANCE GALLERY -->
+            <!-- RIGHT PANEL -->
             <div class="side-panel side-panel-right">
-                <img src="https://github.com/antennastohugh/HumanitiEvents/blob/main/Img%204.pngt&fit=crop&w=400&q=80" class="side-photo" alt="Sound System Setup">
+                <img src="Img 4.png" class="side-photo" alt="Sound System Setup">
             </div>
 
             <div class="container" style="text-align: center;">
                 <h2 style="font-size: 2rem; margin-bottom: 10px;">Mixes & Performance Clips</h2>
                 <p class="subtitle" style="margin-bottom: 25px;">Listen to recorded sets and watch live event highlights.</p>
                 
-             <div class="media-grid"> <!-- MIXCLOUD EMBED 1 --> <div class="mixcloud-container"> <iframe width="100%" height="120" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&light=1&feed=%2Fhumanitimusic%2Fsummer-2025-deep-house-mix%2F" frameborder="0" allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;" ></iframe> </div> <!-- MIXCLOUD EMBED 2 --> <div class="mixcloud-container"> <iframe width="100%" height="120" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&light=1&feed=%2Fhumanitimusic%2Fspring-is-here-hip-hopdisco-mix%2F" frameborder="0" allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;" ></iframe> </div>
-                 
+                <div class="media-grid">
+                    <div class="mixcloud-container">
+                        <iframe width="100%" height="120" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&light=1&feed=%2Fhumanitimusic%2Fsummer-2025-deep-house-mix%2F" frameborder="0" allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;"></iframe>
+                    </div>
+                    <div class="mixcloud-container">
+                        <iframe width="100%" height="120" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&light=1&feed=%2Fhumanitimusic%2Fspring-is-here-hip-hopdisco-mix%2F" frameborder="0" allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;"></iframe>
+                    </div>
                 </div>
             </div>
         </section>
@@ -624,14 +596,14 @@
         <section id="page-4" class="page">
             <div class="page-bg" style="background-image: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1920&q=80');"></div>
 
-            <!-- LEFT SEMI-TRANSPARENT PERFORMANCE GALLERY -->
+            <!-- LEFT PANEL -->
             <div class="side-panel side-panel-left">
-                <img src="https://github.com/antennastohugh/HumanitiEvents/blob/main/Img%202.png&fit=crop&w=400&q=80" class="side-photo" alt="Past Event Dancefloor">
+                <img src="Img 2.png" class="side-photo" alt="Past Event Dancefloor">
             </div>
 
-            <!-- RIGHT SEMI-TRANSPARENT PERFORMANCE GALLERY -->
+            <!-- RIGHT PANEL -->
             <div class="side-panel side-panel-right">
-                <img src="https://github.com/antennastohugh/HumanitiEvents/blob/main/Img%203.jpg&fit=crop&w=400&q=80" class="side-photo" alt="Venue Lighting Design">
+                <img src="Img 3.jpg" class="side-photo" alt="Venue Lighting Design">
             </div>
 
             <div class="contact-section">
