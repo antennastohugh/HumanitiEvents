@@ -51,6 +51,7 @@
             --bg-color: #0c0c0c;
             --card-bg: rgba(22, 22, 22, 0.85); /* Semi-opaque card background */
             --accent-orange: #FF5722;
+            --accent-orange-glow: rgba(255, 87, 34, 0.15);
             --text-main: #ffffff;
             --text-muted: #b0b0b0;
             --border: rgba(255, 255, 255, 0.12);
@@ -93,7 +94,7 @@
         }
 
         /* ==========================================
-           BACKGROUND IMAGE OVERLAY SYSTEM
+           BACKGROUND & DECORATIVE SIDE ELEMENTS
         ========================================== */
         .page {
             min-height: 100vh;
@@ -110,6 +111,51 @@
             overflow: hidden;
         }
 
+        /* Ambient Side Lighting Effects */
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: -150px;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, var(--accent-orange-glow) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .page::after {
+            content: '';
+            position: absolute;
+            bottom: 10%;
+            right: -150px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* Side Wireframe SVG Graphics for Flow */
+        .side-graphic {
+            position: absolute;
+            z-index: 2;
+            pointer-events: none;
+            opacity: 0.35;
+        }
+
+        .side-graphic-left {
+            left: -20px;
+            top: 30%;
+        }
+
+        .side-graphic-right {
+            right: -20px;
+            bottom: 25%;
+        }
+
         /* Fullscreen background image with dark overlay */
         .page-bg {
             position: absolute;
@@ -121,7 +167,7 @@
             background-position: center;
             background-repeat: no-repeat;
             z-index: 1;
-            filter: grayscale(20%) brightness(0.7); /* Subtle stylistic touch */
+            filter: grayscale(20%) brightness(0.6);
         }
 
         /* Dark semi-opaque gradient layer for maximum legibility */
@@ -132,7 +178,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(180deg, rgba(12,12,12,0.85) 0%, rgba(12,12,12,0.92) 50%, rgba(12,12,12,0.88) 100%);
+            background: linear-gradient(180deg, rgba(12,12,12,0.88) 0%, rgba(12,12,12,0.94) 50%, rgba(12,12,12,0.90) 100%);
         }
 
         .container {
@@ -140,7 +186,7 @@
             max-width: 1100px;
             margin: 0 auto;
             position: relative;
-            z-index: 2; /* Sits above background image */
+            z-index: 3; /* Sits above background image & side graphics */
         }
 
         /* Fixed Header */
@@ -168,7 +214,6 @@
             box-sizing: border-box;
         }
 
-        /* Invisible Left Balancer to Keep Center Logo Centered */
         .header-spacer {
             width: 130px;
             display: block;
@@ -248,6 +293,7 @@
             display: inline-block;
             margin-bottom: 20px;
             backdrop-filter: blur(6px);
+            box-shadow: 0 0 15px rgba(255, 87, 34, 0.2);
         }
 
         h1 {
@@ -317,6 +363,12 @@
             text-align: left;
             display: flex;
             flex-direction: column;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(255, 87, 34, 0.4);
+            transform: translateY(-4px);
         }
 
         .card i {
@@ -382,7 +434,8 @@
             max-width: 650px;
             box-sizing: border-box;
             position: relative;
-            z-index: 2;
+            z-index: 3;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .form-group { margin-bottom: 15px; text-align: left; }
@@ -403,6 +456,8 @@
         @media (max-width: 900px) {
             body { scroll-snap-type: none; }
             .page { height: auto; min-height: auto; padding-top: 110px; padding-bottom: 50px; }
+            .side-graphic { display: none; } /* Hide heavy side SVGs on smaller mobile screens */
+            
             h1 { font-size: 2rem; }
             p.subtitle { font-size: 1rem; }
             .logo-text { font-size: 1.5rem; }
@@ -442,7 +497,7 @@
             <a href="#page-1" style="text-decoration: none; text-align: center;" aria-label="Humaniti Events Home">
                 <svg class="logo-graphic" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="50" cy="50" r="45" stroke="white" stroke-width="7"/>
-                    <path d="M 50 12 A 38 38 0 0 1 88 50" stroke="white" stroke-width="5" stroke-linecap="round" fill="none"/>
+                    <path d="M 50 12 A 38 38 0 0 1 88 50" stroke="#FF5722" stroke-width="5" stroke-linecap="round" fill="none"/>
                     <circle cx="50" cy="50" r="22" fill="white"/>
                     <circle cx="50" cy="50" r="8" fill="#0c0c0c"/>
                     <rect x="70" y="58" width="16" height="6" rx="2" transform="rotate(-35 70 58)" fill="white"/>
@@ -470,8 +525,15 @@
     <main>
         <!-- PAGE 1: HERO -->
         <section id="page-1" class="page">
-            <div class="page-bg" style="background-image: url('Img 1.png');"></div>
+            <!-- Unsplash Stock Image: Turntable Close-up -->
+            <div class="page-bg" style="background-image: url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1920&q=80');"></div>
             
+            <!-- Side Graphic Element: Floating Sound Ring -->
+            <svg class="side-graphic side-graphic-left" width="180" height="180" viewBox="0 0 100 100" fill="none">
+                <circle cx="50" cy="50" r="40" stroke="#FF5722" stroke-width="1" stroke-dasharray="4 4"/>
+                <circle cx="50" cy="50" r="28" stroke="#ffffff" stroke-width="0.5"/>
+            </svg>
+
             <div class="container" style="text-align: center;">
                 <span class="badge">15+ Years of Experience</span>
                 <h1>Curated Music Experiences and Event Production</h1>
@@ -482,7 +544,14 @@
 
         <!-- PAGE 2: SERVICES & GENRES -->
         <section id="page-2" class="page">
-            <div class="page-bg" style="background-image: url('Img 2.png');"></div>
+            <!-- Unsplash Stock Image: DJ Mixer Lights -->
+            <div class="page-bg" style="background-image: url('https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?auto=format&fit=crop&w=1920&q=80');"></div>
+
+            <!-- Side Graphic Element: Waves -->
+            <svg class="side-graphic side-graphic-right" width="220" height="220" viewBox="0 0 100 100" fill="none">
+                <path d="M10 20 Q 30 50 10 80" stroke="#FF5722" stroke-width="1.5"/>
+                <path d="M25 10 Q 55 50 25 90" stroke="#ffffff" stroke-width="1" stroke-dasharray="2 3"/>
+            </svg>
 
             <div class="container" style="text-align: center;">
                 <h2 style="font-size: 2rem; margin-bottom: 25px;">Services & Sound</h2>
@@ -532,23 +601,20 @@
 
         <!-- PAGE 3: MIXES & VIDEOS -->
         <section id="page-3" class="page">
-            <div class="page-bg" style="background-image: url('Img 3.jpg');"></div>
+            <!-- Unsplash Stock Image: Live Event Lights -->
+            <div class="page-bg" style="background-image: url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1920&q=80');"></div>
+
+            <!-- Side Graphic Element: Concentric Circles -->
+            <svg class="side-graphic side-graphic-left" width="200" height="200" viewBox="0 0 100 100" fill="none">
+                <circle cx="20" cy="50" r="30" stroke="#ffffff" stroke-width="0.75"/>
+                <circle cx="20" cy="50" r="45" stroke="#FF5722" stroke-width="1.2"/>
+            </svg>
 
             <div class="container" style="text-align: center;">
                 <h2 style="font-size: 2rem; margin-bottom: 10px;">Mixes & Performance Clips</h2>
                 <p class="subtitle" style="margin-bottom: 25px;">Listen to recorded sets and watch live event highlights.</p>
                 
-                <div class="media-grid">
-                    <!-- MIXCLOUD EMBED 1 -->
-                    <div class="mixcloud-container">
-                       <iframe width="100%" height="120" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&light=1&feed=%2Fhumanitimusic%2Fsummer-2025-deep-house-mix%2F" frameborder="0" allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;" ></iframe>
-                    </div>
-
-                    <!-- MIXCLOUD EMBED 2 -->
-                    <div class="mixcloud-container">
-                        <iframe width="100%" height="120" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&light=1&feed=%2Fhumanitimusic%2Fspring-is-here-hip-hopdisco-mix%2F" frameborder="0" allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;" ></iframe>
-                    </div>
-
+               <div class="media-grid"> <!-- MIXCLOUD EMBED 1 --> <div class="mixcloud-container"> <iframe width="100%" height="120" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&light=1&feed=%2Fhumanitimusic%2Fsummer-2025-deep-house-mix%2F" frameborder="0" allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;" ></iframe> </div> <!-- MIXCLOUD EMBED 2 --> <div class="mixcloud-container"> <iframe width="100%" height="120" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&light=1&feed=%2Fhumanitimusic%2Fspring-is-here-hip-hopdisco-mix%2F" frameborder="0" allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;" ></iframe> </div>
                  
                 </div>
             </div>
@@ -556,7 +622,14 @@
 
         <!-- PAGE 4: BOOKING FORM -->
         <section id="page-4" class="page">
-            <div class="page-bg" style="background-image: url('images/booking-bg.jpg');"></div>
+            <!-- Unsplash Stock Image: Party Crowd Night -->
+            <div class="page-bg" style="background-image: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1920&q=80');"></div>
+
+            <!-- Side Graphic Element: Right Lines -->
+            <svg class="side-graphic side-graphic-right" width="180" height="180" viewBox="0 0 100 100" fill="none">
+                <line x1="10" y1="10" x2="90" y2="90" stroke="#FF5722" stroke-width="1"/>
+                <line x1="30" y1="10" x2="90" y2="70" stroke="#ffffff" stroke-width="0.5"/>
+            </svg>
 
             <div class="contact-section">
                 <h2 style="font-size: 1.8rem; margin-bottom: 5px; text-align: center;">Let's Build Your Sound Track</h2>
