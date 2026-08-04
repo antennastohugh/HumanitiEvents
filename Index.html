@@ -156,38 +156,23 @@
             padding: 15px 0 12px 0;
         }
 
-       /* Replace .header-container with this modern 3-part layout */
-.header-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Pushes items to edges while keeping logo centered */
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
-    box-sizing: border-box;
-}
+        /* 3-Part Balanced Header Layout */
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
 
-/* Empty spacer to keep the logo perfectly centered on the page */
-.header-spacer {
-    width: 110px; /* Should match the width of the Book Event button */
-    display: block;
-}
-
-.header-cta {
-    position: static;
-    transform: none;
-    width: 110px;
-}
-
-@media (max-width: 900px) {
-    .header-container {
-        justify-content: center;
-    }
-    .header-spacer, .header-cta {
-        display: none; /* Keeps header clean on mobile */
-    }
-}
+        /* Invisible Left Balancer to Keep Center Logo Centered */
+        .header-spacer {
+            width: 130px;
+            display: block;
+        }
 
         .logo-graphic {
             width: 50px;
@@ -219,10 +204,9 @@
         }
 
         .header-cta {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
+            width: 130px;
+            box-sizing: border-box;
+            white-space: nowrap;
         }
 
         /* Floating Side Navigation */
@@ -424,7 +408,9 @@
             .logo-text { font-size: 1.5rem; }
             .logo-sub { font-size: 0.6rem; letter-spacing: 4px; }
             .logo-graphic { width: 38px; height: 38px; }
-            .header-cta { display: none; }
+            
+            .header-container { justify-content: center; }
+            .header-spacer, .header-cta { display: none; }
 
             .grid, .media-grid {
                 grid-template-columns: 1fr;
@@ -449,16 +435,11 @@
     <!-- FIXED HEADER -->
     <header>
         <div class="header-container">
-        <div class="header-spacer"></div> <!-- Left Balancer -->
-        
-        <a href="#page-1" style="text-decoration: none;">
-            <!-- Logo SVG & Text -->
-        </a>
+            <!-- Left-side empty balancer -->
+            <div class="header-spacer"></div>
 
-        <a href="#page-4" class="btn header-cta">Book Event</a> <!-- Right Button -->
-    </div>
-        <div class="container header-container">
-            <a href="#page-1" style="text-decoration: none;" aria-label="Humaniti Events Home">
+            <!-- Centered Logo -->
+            <a href="#page-1" style="text-decoration: none; text-align: center;" aria-label="Humaniti Events Home">
                 <svg class="logo-graphic" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="50" cy="50" r="45" stroke="white" stroke-width="7"/>
                     <path d="M 50 12 A 38 38 0 0 1 88 50" stroke="white" stroke-width="5" stroke-linecap="round" fill="none"/>
@@ -473,6 +454,7 @@
                 </div>
             </a>
 
+            <!-- Right-side CTA Button -->
             <a href="#page-4" class="btn header-cta" style="padding: 8px 18px; font-size: 0.85rem;">Book Event</a>
         </div>
     </header>
@@ -488,7 +470,6 @@
     <main>
         <!-- PAGE 1: HERO -->
         <section id="page-1" class="page">
-            <!-- ADD YOUR PAGE 1 BACKGROUND IMAGE BELOW -->
             <div class="page-bg" style="background-image: url('Img 1.png');"></div>
             
             <div class="container" style="text-align: center;">
@@ -501,7 +482,6 @@
 
         <!-- PAGE 2: SERVICES & GENRES -->
         <section id="page-2" class="page">
-            <!-- ADD YOUR PAGE 2 BACKGROUND IMAGE BELOW -->
             <div class="page-bg" style="background-image: url('Img 2.png');"></div>
 
             <div class="container" style="text-align: center;">
@@ -552,7 +532,6 @@
 
         <!-- PAGE 3: MIXES & VIDEOS -->
         <section id="page-3" class="page">
-            <!-- ADD YOUR PAGE 3 BACKGROUND IMAGE BELOW -->
             <div class="page-bg" style="background-image: url('Img 3.jpg');"></div>
 
             <div class="container" style="text-align: center;">
@@ -585,7 +564,6 @@
 
         <!-- PAGE 4: BOOKING FORM -->
         <section id="page-4" class="page">
-            <!-- ADD YOUR PAGE 4 BACKGROUND IMAGE BELOW -->
             <div class="page-bg" style="background-image: url('images/booking-bg.jpg');"></div>
 
             <div class="contact-section">
