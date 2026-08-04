@@ -91,7 +91,7 @@
 
         .container {
             width: 100%;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
@@ -248,20 +248,23 @@
             transform: translateY(-2px);
         }
 
-        /* Grid Cards */
+        /* Grid Cards - Explicit 3-column row layout on Desktop */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             width: 100%;
+            align-items: stretch;
         }
 
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            padding: 30px;
+            padding: 30px 20px;
             border-radius: 12px;
             text-align: left;
+            display: flex;
+            flex-direction: column;
         }
 
         .card i {
@@ -271,10 +274,10 @@
         }
 
         .card h3 { font-size: 1.25rem; margin-bottom: 10px; }
-        .card p { color: var(--text-muted); font-size: 0.95rem; }
+        .card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px; }
 
-        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
-        .tag { background: #222; border: 1px solid #333; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; }
+        .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+        .tag { background: #222; border: 1px solid #333; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; }
 
         /* Form Styles */
         .contact-section {
@@ -300,14 +303,22 @@
         input:focus, textarea:focus, select:focus { border-color: var(--accent-orange); outline: none; }
 
         /* Responsive Tweaks */
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
+            .grid {
+                grid-template-columns: 1fr; /* Switch to single column on mobile/tablets */
+            }
+            .page { 
+                height: auto; 
+                min-height: 100vh;
+                padding-top: 140px; 
+                padding-bottom: 60px;
+            }
             h1 { font-size: 2rem; }
             .logo-text { font-size: 1.6rem; }
             .logo-sub { font-size: 0.65rem; letter-spacing: 5px; }
             .logo-graphic { width: 44px; height: 44px; }
             .header-cta { display: none; }
             .page-nav { right: 10px; }
-            .page { padding-top: 120px; }
         }
     </style>
 </head>
@@ -362,7 +373,9 @@
         <section id="page-2" class="page">
             <div class="container" style="text-align: center;">
                 <h2 style="font-size: 2.2rem; margin-bottom: 30px;">Services & Sound</h2>
+                
                 <div class="grid">
+                    <!-- CARD 1 -->
                     <div class="card">
                         <i class="fa-solid fa-sliders"></i>
                         <h3>Open-Format</h3>
@@ -373,33 +386,37 @@
                             <span class="tag">Disco</span>
                             <span class="tag">Pop Hits</span>
                             <span class="tag">Jazz</span>
-                              <span class="tag">Funk</span>
-                              <span class="tag">Trip-Hop</span>
-                            <span class="tag">Drum and Bass</span>
+                            <span class="tag">Funk</span>
+                            <span class="tag">Trip-Hop</span>
+                            <span class="tag">DnB</span>
                             <span class="tag">Indie/Rock</span>
                         </div>
                     </div>
+
+                    <!-- CARD 2 -->
                     <div class="card">
                         <i class="fa-solid fa-compact-disc"></i>
                         <h3>Weddings & Parties</h3>
-                        <p>From sunset cocktail lounge tracks, old-school golden age hip-hop to anthemic dancefloor hits.</p>
-                   
+                        <p>From sunset cocktail lounge tracks to anthemic main stage dancefloor hits.</p>
                         <div class="tags">
                             <span class="tag">Playlist curation</span>
-                            <span class="tag">MC'ing services</span>
+                            <span class="tag">MCing services</span>
                             <span class="tag">Music consultation</span>
                         </div>
-                         </div><p>
+                    </div>
+
+                    <!-- CARD 3 -->
                     <div class="card">
                         <i class="fa-solid fa-volume-high"></i>
                         <h3>Sound & Lighting</h3>
-                        <p>Complete high-grade PA systems, wireless mics, and lighting provided on-site across Catalonia.</p>
-                  
-                           <span class="tag">PA system provided</span>
-                    <span class="tag">Mics for speeches and announcements</span>
-                                  <span class="tag">Lights for the perfect atmosphere</span>
+                        <p>Complete high-grade PA systems, wireless mics, and lighting provided across Catalonia.</p>
+                        <div class="tags">
+                            <span class="tag">PA System</span>
+                            <span class="tag">Speech Mics</span>
+                            <span class="tag">Event Lighting</span>
+                        </div>
+                    </div>
                 </div>
-                      </div>
             </div>
         </section>
 
