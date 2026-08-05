@@ -122,7 +122,6 @@
             filter: brightness(0.75);
         }
 
-        /* FIX: Reduced dark overlay opacity so background images remain visible */
         .page-bg::after {
             content: "";
             position: absolute;
@@ -133,12 +132,11 @@
             background: linear-gradient(180deg, rgba(12,12,12,0.65) 0%, rgba(12,12,12,0.75) 50%, rgba(12,12,12,0.65) 100%);
         }
 
-        /* FIX: Boosted z-index and opacity for high visibility */
         .side-panel {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 180px;
+            width: 200px;
             display: flex;
             flex-direction: column;
             gap: 15px;
@@ -148,12 +146,12 @@
             transition: opacity 0.3s ease;
         }
 
-        .side-panel-left { left: 30px; }
-        .side-panel-right { right: 50px; }
+        .side-panel-left { left: 40px; }
+        .side-panel-right { right: 40px; }
 
         .side-photo {
             width: 100%;
-            height: 120px;
+            height: 140px;
             object-fit: cover;
             border-radius: 10px;
             border: 1px solid var(--border);
@@ -409,7 +407,6 @@
         }
         input:focus, textarea:focus, select:focus { border-color: var(--accent-orange); outline: none; }
 
-        /* FIX: Lowered hide breakpoint so side panels stay visible on standard laptops */
         @media (max-width: 1024px) {
             .side-panel { display: none; }
         }
@@ -480,20 +477,18 @@
     </div>
 
     <main>
-        <!-- PAGE 1: HERO -->
+        <!-- PAGE 1: HERO (Only 2 images total: 1 Left, 1 Right) -->
         <section id="page-1" class="page">
             <div class="page-bg" style="background-image: url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1920&q=80');"></div>
             
-            <!-- LEFT PANEL -->
+            <!-- LEFT PANEL (Img 2) -->
             <div class="side-panel side-panel-left">
                 <img src="https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%202.png" class="side-photo" alt="Past Event DJ Setup">
-                <img src="https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%201.png" class="side-photo" alt="Crowd Dancing">
             </div>
 
-            <!-- RIGHT PANEL -->
+            <!-- RIGHT PANEL (Img 1) -->
             <div class="side-panel side-panel-right">
-                <img src="https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%203.jpg" class="side-photo" alt="Stage Lighting Setup">
-                <img src="https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%204.png" class="side-photo" alt="Live Mixing Desk">
+                <img src="https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%201.png" class="side-photo" alt="Crowd Dancing">
             </div>
 
             <div class="container" style="text-align: center;">
@@ -504,21 +499,9 @@
             </div>
         </section>
 
-        <!-- PAGE 2: SERVICES & GENRES -->
+        <!-- PAGE 2: SERVICES & GENRES (No side panel images) -->
         <section id="page-2" class="page">
             <div class="page-bg" style="background-image: url('https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?auto=format&fit=crop&w=1920&q=80');"></div>
-
-            <!-- LEFT PANEL -->
-            <div class="side-panel side-panel-left">
-                <img src="https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%201.png" class="side-photo" alt="Live Audio Equipment">
-                <img src="https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%202.png" class="side-photo" alt="Party Lights">
-            </div>
-
-            <!-- RIGHT PANEL -->
-            <div class="side-panel side-panel-right">
-                <img src="https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%203.jpg" class="side-photo" alt="Private Celebration Event">
-                <img src="https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%204.png" class="side-photo" alt="Venue Stage Setup">
-            </div>
 
             <div class="container" style="text-align: center;">
                 <h2 style="font-size: 2rem; margin-bottom: 25px;">Services & Sound</h2>
@@ -566,18 +549,13 @@
             </div>
         </section>
 
-        <!-- PAGE 3: MIXES & VIDEOS -->
+        <!-- PAGE 3: MIXES & VIDEOS (Img 3) -->
         <section id="page-3" class="page">
-            <div class="page-bg" style="background-image: url('https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%201.png');"></div>
+            <div class="page-bg" style="background-image: url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1920&q=80');"></div>
 
-            <!-- LEFT PANEL -->
+            <!-- LEFT PANEL (Img 3) -->
             <div class="side-panel side-panel-left">
-                <img src="https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%203.jpg" class="side-photo" alt="Live Performance Highlight">
-            </div>
-
-            <!-- RIGHT PANEL -->
-            <div class="side-panel side-panel-right">
-                <img src="https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%204.png" class="side-photo" alt="Sound System Setup">
+                <img src="https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%203.jpg" class="side-photo" alt="Stage Lighting Setup">
             </div>
 
             <div class="container" style="text-align: center;">
@@ -595,18 +573,13 @@
             </div>
         </section>
 
-        <!-- PAGE 4: BOOKING FORM -->
+        <!-- PAGE 4: BOOKING FORM (Img 4) -->
         <section id="page-4" class="page">
             <div class="page-bg" style="background-image: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1920&q=80');"></div>
 
-            <!-- LEFT PANEL -->
-            <div class="side-panel side-panel-left">
-                <img src="https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%202.png" class="side-photo" alt="Past Event Dancefloor">
-            </div>
-
-            <!-- RIGHT PANEL -->
+            <!-- RIGHT PANEL (Img 4) -->
             <div class="side-panel side-panel-right">
-                <img src="https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%203.jpg" class="side-photo" alt="Venue Lighting Design">
+                <img src="https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%204.png" class="side-photo" alt="Live Mixing Desk">
             </div>
 
             <div class="contact-section">
