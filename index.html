@@ -146,7 +146,7 @@
             transition: opacity 0.3s ease;
         }
 
-        /* NEW: Move side panels lower on Hero Section to avoid clashing with text */
+        /* Move side panels lower on Hero Section to avoid clashing with text */
         .side-panel-hero {
             top: 68%;
         }
@@ -294,9 +294,9 @@
 
         p.subtitle {
             color: var(--text-muted);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             max-width: 650px;
-            margin: 0 auto 30px auto;
+            margin: 0 auto 20px auto;
             text-align: center;
             text-shadow: 0 2px 8px rgba(0,0,0,0.8);
         }
@@ -369,6 +369,49 @@
         .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
         .tag { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.1); padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; white-space: nowrap; }
 
+        /* REVIEWS WIDGET STYLING */
+        .reviews-wrapper {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            transition: border-color 0.3s ease;
+        }
+
+        .reviews-wrapper:hover {
+            border-color: rgba(255, 87, 34, 0.3);
+        }
+
+        .cueup-embed-frame {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .cueup-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 10px;
+            margin-top: 5px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.85rem;
+        }
+
+        .cueup-footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .cueup-footer a:hover {
+            color: var(--accent-orange);
+        }
+
+        /* MEDIA GRID */
         .media-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -381,6 +424,7 @@
             overflow: hidden;
             border: 1px solid var(--border);
             background: var(--card-bg);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
         }
 
         .mixcloud-container iframe {
@@ -482,7 +526,7 @@
     <div class="page-nav">
         <a href="#page-1" class="dot active" aria-label="Page 1: Home"></a>
         <a href="#page-2" class="dot" aria-label="Page 2: Services"></a>
-        <a href="#page-3" class="dot" aria-label="Page 3: Mixes & Media"></a>
+        <a href="#page-3" class="dot" aria-label="Page 3: Reviews & Mixes"></a>
         <a href="#page-4" class="dot" aria-label="Page 4: Booking"></a>
     </div>
 
@@ -491,12 +535,12 @@
         <section id="page-1" class="page">
             <div class="page-bg" style="background-image: url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1920&q=80');"></div>
             
-            <!-- LEFT PANEL (Img 2 - Shifted lower down) -->
+            <!-- LEFT PANEL -->
             <div class="side-panel side-panel-hero side-panel-left">
                 <img src="https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%202.png" class="side-photo" alt="Past Event DJ Setup">
             </div>
 
-            <!-- RIGHT PANEL (Img 1 - Shifted lower down) -->
+            <!-- RIGHT PANEL -->
             <div class="side-panel side-panel-hero side-panel-right">
                 <img src="https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%201.png" class="side-photo img-top-focus" alt="Crowd Dancing">
             </div>
@@ -508,7 +552,7 @@
                 <a href="#page-4" class="btn">Check Event Availability</a>
             </div>
         </section>
-       
+        
         <!-- PAGE 2: SERVICES & GENRES -->
         <section id="page-2" class="page">
             <div class="page-bg" style="background-image: url('https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?auto=format&fit=crop&w=1920&q=80');"></div>
@@ -559,36 +603,56 @@
             </div>
         </section>
 
-        <!-- PAGE 3: MIXES & VIDEOS -->
+        <!-- PAGE 3: REVIEWS & MIXES -->
         <section id="page-3" class="page">
             <div class="page-bg" style="background-image: url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1920&q=80');"></div>
 
-            <!-- LEFT PANEL (Img 3) -->
+            <!-- LEFT PANEL -->
             <div class="side-panel side-panel-left">
                 <img src="https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%203.jpg" class="side-photo" alt="Stage Lighting Setup">
             </div>
-<div class="cueup-embed-frame"><iframe src="https://cueup.io/embed/reviews?userId=35358&display=all&onlyShowBestReviews=true&showAverageRating=true&theme=light" allow-transparency style="width: 100%; height: 100%; min-height: 330px; border: none;" title="Cueup Reviews Embed"></iframe><div style="display: flex; align-items: center; padding: 8px; font-size: 14px;"><a href="https://cueup.io/user/humanitidj#reviews" style="display: flex; align-items: center; color: #4d4d4dff; text-decoration: none; font-size: 14px;">View on Cueup</a><span style="flex-grow: 1;"></span><a href="https://cueup.io" target="_blank" rel="noopener noreferrer" style="margin-right:-20px;"><img src="https://cueup.io/favicon.ico" alt="Cueup Logo" style="width: 24px; height: 24px; border-radius: 12px; margin-right: 8px;" /></a></div></div>
+
             <div class="container" style="text-align: center;">
-                <h2 style="font-size: 2rem; margin-bottom: 10px;">Mixes & Performance Clips</h2>
-                <p class="subtitle" style="margin-bottom: 25px;">Listen to recorded sets and watch live event highlights.</p>
+                <h2 style="font-size: 2rem; margin-bottom: 8px;">Client Reviews & Recorded Mixes</h2>
+                <p class="subtitle">Read feedback from past events and listen to live sets.</p>
                 
+                <!-- CLEAN & PROPERLY PROPORTIONED REVIEWS SECTION -->
+                <div class="reviews-wrapper">
+                    <div class="cueup-embed-frame">
+                        <iframe src="https://cueup.io/embed/reviews?userId=35358&display=all&onlyShowBestReviews=true&showAverageRating=true&theme=dark" 
+                                allowtransparency="true" 
+                                style="width: 100%; height: 260px; border: none;" 
+                                title="Cueup Client Reviews">
+                        </iframe>
+                    </div>
+                    <div class="cueup-footer">
+                        <a href="https://cueup.io/user/humanitidj#reviews" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-solid fa-star" style="color: var(--accent-orange); margin-right: 5px;"></i> Read all reviews on Cueup
+                        </a>
+                        <a href="https://cueup.io" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 6px;">
+                            <img src="https://cueup.io/favicon.ico" alt="Cueup Logo" style="width: 18px; height: 18px; border-radius: 50%;" />
+                            <span>Verified Reviews</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- MIXCLOUD MEDIA GRID -->
                 <div class="media-grid">
                     <div class="mixcloud-container">
-                        <iframe width="100%" height="120" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&light=1&feed=%2Fhumanitimusic%2Fsummer-2025-deep-house-mix%2F" frameborder="0" allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;"></iframe>
+                        <iframe height="120" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&light=1&feed=%2Fhumanitimusic%2Fsummer-2025-deep-house-mix%2F"></iframe>
                     </div>
                     <div class="mixcloud-container">
-                        <iframe width="100%" height="120" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&light=1&feed=%2Fhumanitimusic%2Fspring-is-here-hip-hopdisco-mix%2F" frameborder="0" allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;"></iframe>
+                        <iframe height="120" src="https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&light=1&feed=%2Fhumanitimusic%2Fspring-is-here-hip-hopdisco-mix%2F"></iframe>
                     </div>
                 </div>
             </div>
-            
         </section>
 
         <!-- PAGE 4: BOOKING FORM -->
         <section id="page-4" class="page">
             <div class="page-bg" style="background-image: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1920&q=80');"></div>
 
-            <!-- RIGHT PANEL (Img 4) -->
+            <!-- RIGHT PANEL -->
             <div class="side-panel side-panel-right">
                 <img src="https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%204.png" class="side-photo" alt="Live Mixing Desk">
             </div>
