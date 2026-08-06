@@ -146,6 +146,11 @@
             transition: opacity 0.3s ease;
         }
 
+        /* NEW: Move side panels lower on Hero Section to avoid clashing with text */
+        .side-panel-hero {
+            top: 68%;
+        }
+
         .side-panel-left { left: 40px; }
         .side-panel-right { right: 40px; }
 
@@ -486,13 +491,13 @@
         <section id="page-1" class="page">
             <div class="page-bg" style="background-image: url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1920&q=80');"></div>
             
-            <!-- LEFT PANEL (Img 2) -->
-            <div class="side-panel side-panel-left">
+            <!-- LEFT PANEL (Img 2 - Shifted lower down) -->
+            <div class="side-panel side-panel-hero side-panel-left">
                 <img src="https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%202.png" class="side-photo" alt="Past Event DJ Setup">
             </div>
 
-            <!-- RIGHT PANEL (Img 1 - Focused on top/head) -->
-            <div class="side-panel side-panel-right">
+            <!-- RIGHT PANEL (Img 1 - Shifted lower down) -->
+            <div class="side-panel side-panel-hero side-panel-right">
                 <img src="https://raw.githubusercontent.com/antennastohugh/HumanitiEvents/main/Img%201.png" class="side-photo img-top-focus" alt="Crowd Dancing">
             </div>
 
